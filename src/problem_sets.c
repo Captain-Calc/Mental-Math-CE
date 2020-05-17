@@ -4,10 +4,7 @@
 #include "exercise.h"
 #include "input.h"
 #include "problem_sets.h"
-<<<<<<< HEAD
-=======
 #include "settings.h"
->>>>>>> 71192d1... Release version 2.0.0
 #include "user_interface.h"
 
 #include <stdint.h>
@@ -19,33 +16,7 @@
 
 // Temporary
 #include <debug.h>
-<<<<<<< HEAD
-
-void dump(const char *data_buffer, const int length) {
-	char byte;
-	unsigned int i, j;
-
-	for (i = 0; i < length; i++) {
-		byte = data_buffer[i];
-		dbg_sprintf(dbgout, "%02x ", data_buffer[i]);
-		if ((i % 16) == 15 || (i == length - 1)) {
-			for (j = 0; j < 15 - (i % 16); j++)
-				dbg_sprintf(dbgout, "   ");
-			dbg_sprintf(dbgout, "| ");
-			for (j = (i - (i % 16)); j <= i; j++) {
-				byte = data_buffer[j];
-				if ((byte > 31) && (byte < 127))
-					dbg_sprintf(dbgout, "%c", byte);
-				else
-					dbg_sprintf(dbgout, ".");
-			};
-				dbg_sprintf(dbgout, "\n");
-		};
-	};
-}
-=======
 #include "calcdbg.h"
->>>>>>> 71192d1... Release version 2.0.0
 
 
 /*	Pass an array containing the appropriate problem sets
@@ -70,10 +41,7 @@ static uint8_t division_psets[] = {
 	4, 2, 5, 2, 4, 3, 5, 3, 5, 4
 };
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 71192d1... Release version 2.0.0
 static uint8_t* get_pset_array(void) {
 	
 	switch (exercise.type) {
@@ -96,20 +64,14 @@ static uint8_t* get_pset_array(void) {
 	};
 }
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 71192d1... Release version 2.0.0
 static uint8_t array_len(void) {
 	if (exercise.type == ADDITION || exercise.type == SUBTRACTION)
 		return 16;
 	return 20;
 }
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 71192d1... Release version 2.0.0
 static void draw_pset_symbol(void) {
 	
 	gfx_sprite_t *symbol;
@@ -139,17 +101,12 @@ static void draw_pset_symbol(void) {
 		symbol = squares_icon;
 		break;
 		
-<<<<<<< HEAD
-		default:
-		symbol = complements_icon;
-=======
 		case COMPLEMENTS:
 		symbol = complements_icon;
 		break;
 		
 		default:
 		symbol = dates_icon;
->>>>>>> 71192d1... Release version 2.0.0
 	};
 	
 	gfx_SetColor(BLACK);
@@ -171,10 +128,7 @@ static void draw_pset_symbol(void) {
 	return;
 }
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 71192d1... Release version 2.0.0
 static const char* build_pset_button_str(uint8_t *pset_array, uint8_t offset) {
 	
 	char *str = malloc(6);
@@ -185,10 +139,7 @@ static const char* build_pset_button_str(uint8_t *pset_array, uint8_t offset) {
 	return (const char*)str;
 }
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 71192d1... Release version 2.0.0
 static void draw_basic_pset(uint8_t *pset_array, uint8_t selection_col, uint8_t selection_row) {
 	
 	uint8_t array_length;
@@ -209,11 +160,7 @@ static void draw_basic_pset(uint8_t *pset_array, uint8_t selection_col, uint8_t 
 			if (selection_col == i && selection_row == j)
 				highlight = true;
 			str = build_pset_button_str(pset_array, 2 * j + ((array_length / 2) * i));
-<<<<<<< HEAD
-			dump(str, 5);
-=======
 			calcdbg_dump(str, 5);
->>>>>>> 71192d1... Release version 2.0.0
 			text_button(str, highlight, 50 + 110 * i, 70 + 30 * j, 100, 24);
 			free(str);
 		};
@@ -224,8 +171,6 @@ static void draw_basic_pset(uint8_t *pset_array, uint8_t selection_col, uint8_t 
 	return;	
 }
 
-<<<<<<< HEAD
-=======
 
 static void get_bounds(uint8_t *pset_array, uint8_t sel_col, uint8_t sel_row) {
 	
@@ -239,7 +184,7 @@ static void get_bounds(uint8_t *pset_array, uint8_t sel_col, uint8_t sel_row) {
 }
 
 
->>>>>>> 71192d1... Release version 2.0.0
+
 static void draw_input_box_centered(const char *label, uint8_t yPos) {
 	
 	uint24_t width;
@@ -254,32 +199,9 @@ static void draw_input_box_centered(const char *label, uint8_t yPos) {
 	return;
 }
 
-<<<<<<< HEAD
-static void setup_small_font_input(void) {
-	textio_SetInputColorConfig(BLACK, BLACK);
-	textio_SetInitialKeymap(1);
-	gfx_SetTextScale(1, 1);
-	set_cursor_dimensions(1, 9);
-	return;
-}
-
-static void get_bounds(uint8_t *pset_array, uint8_t sel_col, uint8_t sel_row) {
-	
-	uint8_t array_length = array_len();
-	
-	exercise.lower_bound_1 = (uint24_t)pow(10, *(pset_array + ((array_length / 2) * sel_col) + 2 * sel_row) - 1);
-	exercise.upper_bound_1 = (uint24_t)pow(10, *(pset_array + ((array_length / 2) * sel_col) + 2 * sel_row)) - 1;
-	exercise.lower_bound_2 = (uint24_t)pow(10, *(pset_array + ((array_length / 2) * sel_col) + 2 * sel_row + 1) - 1);
-	exercise.upper_bound_2 = (uint24_t)pow(10, *(pset_array + ((array_length / 2) * sel_col) + 2 * sel_row + 1)) - 1;
-	return;
-}
-
-// Gets the number of problems for the basic operations problem set
-=======
 
 /*	Gets the number of problems for the basic operations problem set
 	Also gets timer if active */
->>>>>>> 71192d1... Release version 2.0.0
 static int get_num_problems(void) {
 	
 	uint8_t key;
@@ -287,13 +209,6 @@ static int get_num_problems(void) {
 	uint8_t width = 220;
 	uint8_t height = 50;
 	
-<<<<<<< HEAD
-	char *num_problems_str;
-	
-	gfx_FillScreen(BG_COLOR);
-	dialog((320 - width) / 2, (240 - height) / 2, width, height);
-	draw_input_box_centered("# of problems:", (240 - height) / 2 + 18);
-=======
 	char buffer[4];
 	
 	if (SETTINGS_TIMER)
@@ -304,37 +219,10 @@ static int get_num_problems(void) {
 	draw_input_box_centered("# of problems:", 138 - height / 2);
 	if (SETTINGS_TIMER)
 		draw_input_box_centered("Time/problem:", 160 - height / 2);
->>>>>>> 71192d1... Release version 2.0.0
 	icon_button(back_icon, 5, 203);
 	icon_button(start_icon, 283, 203);
 	gfx_BlitBuffer();
 	
-<<<<<<< HEAD
-	// Number of problems max: 99 (2 digits)
-	num_problems_str = malloc(3);
-	memset(num_problems_str, '\0', 3);
-	input_config.curr_char = num_problems_str;
-	input_config.visible_buffer = num_problems_str;
-	setup_small_font_input();
-	
-	delay(100);										// Catch the last keypress
-	
-	do {
-		do {
-			key = textio_NumericalInput(num_problems_str, 2, 46, 185, 115);
-			gfx_BlitRectangle(1, 185, 115, 46, 11);
-		} while (key != sk_Enter && key != sk_Yequ && key != sk_Graph);
-		
-		if (key == sk_Yequ)
-			return -1;
-	
-	} while (atoi((const char*)num_problems_str) == 0);
-	
-	exercise.num_problems = atoi((const char*)num_problems_str);
-	
-	// Free allocated memory
-	free(num_problems_str);
-=======
 	delay(100);					// Catch the last keypress
 	
 	// Number of problems max: 99 (2 digits)
@@ -367,15 +255,12 @@ static int get_num_problems(void) {
 			} while (key != sk_Enter  && key != sk_2nd && key != sk_Graph);
 		} while (exercise.timer == 0);
 	};
->>>>>>> 71192d1... Release version 2.0.0
+
 	
 	return exercise.num_problems;
 }
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 71192d1... Release version 2.0.0
 void basic_problem_set(void) {
 	
 	uint8_t *pset_array;
@@ -443,35 +328,7 @@ void basic_problem_set(void) {
 	};
 }
 
-<<<<<<< HEAD
-void special_ops_pset(void) {
-	
-	uint8_t width;
-	uint8_t height;
-	uint8_t key;
-	
-	char *lower_bound_str, *upper_bound_str;
-	char *num_problems_str;
-	
-	/*
-	Roots:
-	lower bound = 4 digits
-	upper bound = 5 digits
-	
-	Squares:
-	lower bound = 4 digits
-	upper bound = 5 digits
-	
-	Complements = 5 digits
-	
-	Dates:
-	lower bound = 4 digits
-	upper bound = 5 digits
-	These probably should be changed
-	*/
-	
-	
-=======
+
 void roots_squares_pset(void) {
 	
 	uint8_t key;
@@ -570,154 +427,11 @@ void complements_pset(void) {
 		height = 100;
 	
 	yPos = 120 - height / 2;
->>>>>>> 71192d1... Release version 2.0.0
 	
 	gfx_FillScreen(BG_COLOR);
 	draw_pset_symbol();
 	icon_button(back_icon, 5, 203);
 	icon_button(start_icon, 283, 203);
-<<<<<<< HEAD
-	
-	
-	if (exercise.type == ROOTS || exercise.type == SQUARES) {
-		
-		dialog(50, 70, 220, 100);
-		draw_input_box_centered("Lower bound:", 90);
-		draw_input_box_centered("Upper bound:", 105);
-		draw_input_box_centered("# of problems:", 130);
-		gfx_BlitBuffer();
-		
-		// Get lower bound (4 digits)
-		lower_bound_str = malloc(5);
-		memset(lower_bound_str, '\0', 5);
-		input_config.curr_char = lower_bound_str;
-		input_config.visible_buffer = lower_bound_str;
-		setup_small_font_input();
-		
-		do {
-			do {
-				key = textio_NumericalInput(lower_bound_str, 4, 46, 181, 92);
-				gfx_BlitRectangle(1, 181, 92, 46, 11);
-			} while (key != sk_Enter && key != sk_Yequ && key != sk_Graph);
-			
-			if (key == sk_Yequ) {
-				free(lower_bound_str);
-				goto EXIT_MENU;
-			};
-			
-		} while (atoi((const char*)lower_bound_str) == 0);
-		
-		exercise.lower_bound_1 = atoi((const char*)lower_bound_str);
-		free(lower_bound_str);
-		
-		// Get upper bound (5 digits)
-		upper_bound_str = malloc(6);
-		memset(upper_bound_str, '\0', 6);
-		input_config.curr_char = upper_bound_str;
-		input_config.visible_buffer = upper_bound_str;
-		
-		do {
-			do {
-				key = textio_NumericalInput(upper_bound_str, 5, 46, 181, 107);
-				gfx_BlitRectangle(1, 181, 107, 46, 11);
-			} while (key != sk_Enter && key != sk_Yequ && key != sk_Graph);
-			
-			if (key == sk_Yequ) {
-				free(upper_bound_str);
-				goto EXIT_MENU;
-			};
-			
-		} while (atoi((const char*)upper_bound_str) == 0);
-		
-		exercise.upper_bound_1 = atoi((const char*)upper_bound_str);
-		free(upper_bound_str);
-		
-		// Get number of problems (2 digits)
-		num_problems_str = malloc(3);
-		memset(num_problems_str, '\0', 3);
-		input_config.curr_char = num_problems_str;
-		input_config.visible_buffer = num_problems_str;
-		
-		do {
-			do {
-				key = textio_NumericalInput(num_problems_str, 2, 46, 185, 132);
-				gfx_BlitRectangle(1, 185, 132, 46, 11);
-			} while (key != sk_Enter && key != sk_Yequ && key != sk_Graph);
-			
-			if (key == sk_Yequ) {
-				free(num_problems_str);
-				goto EXIT_MENU;
-			};
-		
-		} while (atoi((const char*)num_problems_str) == 0);
-		
-		exercise.num_problems = atoi((const char*)num_problems_str);
-		free(num_problems_str);
-	};
-	
-	if (exercise.type == COMPLEMENTS) {
-		
-		width = 220;
-		height = 80;
-		
-		dialog((320 - width) / 2, (240 - height) / 2, width, height);
-		draw_input_box_centered("Complements of", (240 - height) / 2 + 20);
-		draw_input_box_centered("# of problems:", (240 - height) / 2 + 45);
-		gfx_BlitBuffer();
-		
-		// Get upper bound (5 digits)
-		upper_bound_str = malloc(6);
-		memset(upper_bound_str, '\0', 6);
-		input_config.curr_char = upper_bound_str;
-		input_config.visible_buffer = upper_bound_str;
-		
-		do {
-			do {
-				key = textio_NumericalInput(upper_bound_str, 5, 46, 188, 107);
-				gfx_BlitRectangle(1, 188, 107, 46, 11);
-			} while (key != sk_Enter && key != sk_Yequ && key != sk_Graph);
-			
-			if (key == sk_Yequ) {
-				free(upper_bound_str);
-				goto EXIT_MENU;
-			};
-			
-		} while (atoi((const char*)upper_bound_str) == 0);
-		
-		exercise.upper_bound_1 = atoi((const char*)upper_bound_str);
-		free(upper_bound_str);
-		
-		// Get number of problems (2 digits)
-		num_problems_str = malloc(3);
-		memset(num_problems_str, '\0', 3);
-		input_config.curr_char = num_problems_str;
-		input_config.visible_buffer = num_problems_str;
-		
-		do {
-			do {
-				key = textio_NumericalInput(num_problems_str, 2, 46, 185, 132);
-				gfx_BlitRectangle(1, 185, 132, 46, 11);
-			} while (key != sk_Enter && key != sk_Yequ && key != sk_Graph);
-			
-			if (key == sk_Yequ) {
-				free(num_problems_str);
-				goto EXIT_MENU;
-			};
-		
-		} while (atoi((const char*)num_problems_str) == 0);
-		
-		exercise.num_problems = atoi((const char*)num_problems_str);
-		free(num_problems_str);
-		
-		
-		// For this exercise, the range is from the entered number (upper_bound_1) to zero.
-		exercise.lower_bound_1 = 0;
-	};
-
-	do_exercise();
-	
-	EXIT_MENU:
-=======
 	dialog(50, yPos, width, height);
 	draw_input_box_centered("Complements of", yPos + 20);
 	draw_input_box_centered("# of problems:", yPos + 50);
@@ -864,6 +578,5 @@ void dates_pset(void) {
 	};
 
 	do_exercise();
->>>>>>> 71192d1... Release version 2.0.0
 	return;
 }

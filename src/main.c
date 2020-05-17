@@ -1,15 +1,8 @@
 /*======================================
  * Program Name: Mental Math CE
-<<<<<<< HEAD
- * Version: 1.2.6 (alpha)
- * Author: Captain Calc
- * License: Open Source
- * Last edited: 2/06/2020
-=======
  * Version: 2.0.0 (alpha)
  * Author: Captain Calc
  * Last edited: 5/14/2020
->>>>>>> 71192d1... Release version 2.0.0
  *======================================
 */
 
@@ -37,35 +30,7 @@
 // Temporary
 #include <debug.h>
 
-<<<<<<< HEAD
 
-
-static void setup_graphics(void);
-static bool find_sprite_appvar(void);
-static bool find_save_appvar(void);
-static void draw_main_menu(uint8_t exercise_set, uint8_t selection);
-void close_program(void);
-
-void main(void) {
-    
-	uint8_t exercise_set;
-	uint8_t selection;
-	
-	kb_key_t arrows, escape_keys_1, escape_keys_2;
-	bool key_left, key_right, key_up, key_down;
-	bool key_2nd, key_Yequ, key_Graph;
-	bool key_Enter, key_Clear;
-	
-	setup_graphics();
-	
-	
-	if (!find_sprite_appvar()) {
-		//error("The program could not find the sprite appvar. \
-		Please sent MentalMS.8xv to your calculator.");
-	};
-	
-	if (find_save_appvar()) {
-=======
 const char save_name[] = "MentalMS";
 
 
@@ -106,25 +71,11 @@ static void reset_save_appvar(void) {
 	ti_var_t save_file;
 	
 	if ((save_file = ti_Open("MentalMS", "w")) == NULL) {
->>>>>>> 71192d1... Release version 2.0.0
 		error();
 		gfx_SetTextBGColor(BROWN);
 		gfx_SetTextFGColor(BLACK);
 		gfx_SetTextTransparentColor(BROWN);
 		gfx_SetTextScale(1, 1);
-<<<<<<< HEAD
-		print_centered("The program could not", 105);
-		print_centered("find the save appvar", 115);
-		print_centered("MentalMS.8xv.", 125);
-		print_centered("All settings have been", 135);
-		print_centered("reset and any saved", 145);
-		print_centered("exercise times have been", 155);
-		print_centered("lost", 165);
-		gfx_BlitBuffer();
-		while(!os_GetCSC());
-		//reset_save_appvar();
-	};
-=======
 		print_centered("The program could not", 120);
 		print_centered("reset the save appvar.", 130);
 		print_centered("The program will", 140);
@@ -236,7 +187,6 @@ void main(void) {
 	
 	find_sprite_appvar();
 	find_save_appvar();
->>>>>>> 71192d1... Release version 2.0.0
 
 	/*	exercise_set 0 is the basic math operations
 		exercise_set 1 is the special math operations */
@@ -285,11 +235,7 @@ void main(void) {
 		
 		if (key_Yequ) {
 			dbg_sprintf(dbgout, "Inside settings if() statement\n");
-<<<<<<< HEAD
-			settings();
-=======
 			settings_menu();
->>>>>>> 71192d1... Release version 2.0.0
 			dbg_sprintf(dbgout, "Executed settings()\n");
 		};
 		
@@ -301,41 +247,22 @@ void main(void) {
 				switch (selection) {
 					case 0:
 					exercise.type = ROOTS;
-<<<<<<< HEAD
-					special_ops_pset();
-=======
 					roots_squares_pset();
->>>>>>> 71192d1... Release version 2.0.0
 					break;
 					
 					case 1:
 					exercise.type = SQUARES;
-<<<<<<< HEAD
-					special_ops_pset();
-=======
 					roots_squares_pset();
->>>>>>> 71192d1... Release version 2.0.0
 					break;
 					
 					case 2:
 					exercise.type = COMPLEMENTS;
-<<<<<<< HEAD
-					exercise.lower_bound_1 = 0;
-					exercise.upper_bound_1 = 100;
-					exercise.num_problems = 2;
-					special_ops_pset();
-					break;
-					
-					case 3:
-					//datesProblemSet();
-=======
 					complements_pset();
 					break;
 					
 					case 3:
 					exercise.type = DATES;
 					dates_pset();
->>>>>>> 71192d1... Release version 2.0.0
 					break;
 					
 					default:
@@ -346,97 +273,5 @@ void main(void) {
 	};
 	
 	close_program();
-<<<<<<< HEAD
 	exit(0);
-}
-
-static void setup_graphics(void) {
-	MentalMI_init();
-	// There should be error-checking here
-	gfx_Begin();
-	gfx_SetPalette(sprites_pal, sizeof_sprites_pal, 0);
-	gfx_SetDrawBuffer();
-	gfx_FillScreen(BG_COLOR);
-}
-
-static bool find_sprite_appvar(void) {
-	
-	ti_var_t slot;
-	bool found = false;
-	
-	ti_CloseAll();
-	slot = ti_Open("MentalMI", "r");
-	
-	if (slot != NULL)
-		found = true;
-	
-	ti_CloseAll();
-	return found;
-}
-
-static bool find_save_appvar(void) {
-	
-	ti_var_t slot;
-	uint8_t *search_pos = NULL;
-	bool found;
-	
-	ti_CloseAll();
-	
-	if (ti_Detect(&search_pos, "MentalMS") == NULL)
-		found = false;
-		
-	// Verify the signature and set settings according to saved structure
-	ti_CloseAll();
-	found = true;
-	return found;
-}
-
-static void draw_main_menu(uint8_t exercise_set, uint8_t selection) {
-	
-	char *exercise[8] = {"Addition", "Subtraction", "Multiplication", "Division", "Roots", "Squares", "Complements", "Dates"};
-	
-	uint8_t i;
-	bool highlight;
-	
-	gfx_FillScreen(BG_COLOR);
-	gfx_SetTextBGColor(BG_COLOR);
-	gfx_SetTextFGColor(BG_SHADOW_COLOR);
-	gfx_SetTextTransparentColor(BG_COLOR);
-	gfx_SetTextScale(2, 2);
-	print_centered("Mental Math CE", 30);
-	gfx_SetTextFGColor(BLACK);
-	print_centered("Mental Math CE", 28);
-	
-	// Draw exercise set and highlighted button	
-	for (i = 0; i < 4; i++) {
-		highlight = false;
-		if (selection == i)
-			highlight = true;
-		text_button(exercise[4 * exercise_set + i], highlight, 90, 75 + (30 * i), 140, 24);
-	};
-	
-	icon_button(settings_icon, 5, 203);
-	icon_button(exit_icon, 283, 203);
-	
-	// Draw page indicator
-	page_indicator(2, exercise_set + 1);
-	
-	gfx_BlitBuffer();
-	return;
-}
-
-void close_program(void) {
-	// If the program uses appvars, this function
-	// will perform file operations checks and throw
-	// an error if an error occurs.
-	
-	// Save record times to appvar
-	// Close graphics
-	// Free any allocated memory and verify that the
-	// program exits safely.
-	ti_CloseAll();
-	gfx_End();
-	
-=======
->>>>>>> 71192d1... Release version 2.0.0
 }

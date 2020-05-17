@@ -18,8 +18,6 @@ void print_control(const char *key, const char *action, uint8_t yPos) {
 	return;
 }
 
-<<<<<<< HEAD
-=======
 
 bool chkbit(uint8_t byte, uint8_t pos) {
 	if (byte & (1 << pos))
@@ -38,7 +36,6 @@ uint8_t setbit(uint8_t byte, uint8_t pos) {
 }
 
 
->>>>>>> 71192d1... Release version 2.0.0
 void toggle(bool state, uint24_t xPos, uint8_t yPos, uint24_t width) {
 	
 	gfx_SetColor(BLACK);
@@ -60,10 +57,7 @@ void toggle(bool state, uint24_t xPos, uint8_t yPos, uint24_t width) {
 	return;
 }
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 71192d1... Release version 2.0.0
 void draw_settings_button(char *title, bool button_state, bool toggle_state, uint8_t yPos) {
 	
 	button(button_state, 40, yPos, 240, 32);
@@ -76,37 +70,19 @@ void draw_settings_button(char *title, bool button_state, bool toggle_state, uin
 	return;
 }
 
-<<<<<<< HEAD
-uint8_t settings_page(void) {
-	
-	bool state;
-=======
 
 uint8_t settings_page(void) {
 	
 	bool button_state, toggle_state;
->>>>>>> 71192d1... Release version 2.0.0
 	bool arrows;
 	uint8_t selection;
 	uint8_t i;
 	
-<<<<<<< HEAD
-	char *settings[3] = {"COMING SOON!", "COMING SOON!", "COMING SOON!"};
-=======
 	char *setting_titles[3] = {"AUTO-CHECK", "TIMER", "COMING SOON!"};
->>>>>>> 71192d1... Release version 2.0.0
 	
 	selection = 0;
 	
 	for (;;) {
-<<<<<<< HEAD
-		draw_title("Settings");
-		for (i = 0; i < 3; i++) {
-			state = false;
-			if (selection == i)
-				state = true;
-			draw_settings_button(settings[i], state, true, 50 + 36 * i);
-=======
 		
 		dbg_sprintf(dbgout, "settings.byte = %d\n", settings.byte);
 		
@@ -120,7 +96,6 @@ uint8_t settings_page(void) {
 				toggle_state = true;
 			dbg_sprintf(dbgout, "chkbit = %d\ntoggle_state = %d\n", chkbit(settings.byte, i), toggle_state);
 			draw_settings_button(setting_titles[i], button_state, chkbit(settings.byte, i), 50 + 36 * i);
->>>>>>> 71192d1... Release version 2.0.0
 		};
 		
 		gfx_BlitBuffer();
@@ -138,13 +113,8 @@ uint8_t settings_page(void) {
 		if ((arrows & kb_Up) && selection > 0)
 			selection--;
 		
-<<<<<<< HEAD
-		if ((kb_Data[6] & kb_Enter) || (kb_Data[1] & kb_2nd));
-			// Toggle setting
-=======
 		if ((kb_Data[6] & kb_Enter) || (kb_Data[1] & kb_2nd))
 			settings.byte = setbit(settings.byte, selection);
->>>>>>> 71192d1... Release version 2.0.0
 		
 		if (arrows & kb_Right)
 			return 2;
@@ -154,10 +124,7 @@ uint8_t settings_page(void) {
 	};
 }
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 71192d1... Release version 2.0.0
 uint8_t help_page(void) {
 	
 	draw_title("Help");
@@ -171,10 +138,7 @@ uint8_t help_page(void) {
 	print_control("[Del]", "Backspace", 130);
 	print_control("[Clear]", "Delete input", 140);
 	gfx_BlitBuffer();
-<<<<<<< HEAD
-=======
 	delay(200);
->>>>>>> 71192d1... Release version 2.0.0
 	
 	for (;;) {
 		do {
@@ -208,10 +172,7 @@ uint8_t help_page(void) {
 	*/	
 }
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 71192d1... Release version 2.0.0
 uint8_t about_page(void) {
 	
 	draw_title("About");
@@ -232,10 +193,7 @@ uint8_t about_page(void) {
 	print_centered("Thank you for downloading Mental", 155);
 	print_centered("Math CE!", 165);
 	gfx_BlitBuffer();
-<<<<<<< HEAD
-=======
 	delay(200);
->>>>>>> 71192d1... Release version 2.0.0
 	
 	for (;;) {
 		do {
@@ -264,12 +222,8 @@ uint8_t about_page(void) {
 	*/
 }
 
-<<<<<<< HEAD
-void settings(void) {
-=======
 
 void settings_menu(void) {
->>>>>>> 71192d1... Release version 2.0.0
 	
 	uint8_t curr_page;
 	
@@ -302,10 +256,5 @@ void settings_menu(void) {
 			default:
 			return;
 		};
-<<<<<<< HEAD
-		
-		delay(200);					// Slow down the page scrolling
-=======
->>>>>>> 71192d1... Release version 2.0.0
 	};
 }

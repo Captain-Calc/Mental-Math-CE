@@ -7,11 +7,7 @@
 #include <graphx.h>
 
 
-<<<<<<< HEAD
-void print_centered(const char* text, uint8_t yPos) {
-=======
 void print_centered(char* text, uint8_t yPos) {
->>>>>>> 71192d1... Release version 2.0.0
 	gfx_PrintStringXY(text, 160 - gfx_GetStringWidth(text) / 2, yPos);
 }
 
@@ -151,10 +147,5 @@ void dither_screen(void) {
 			gfx_TransparentSprite_NoClip(dithering, 16 * j, 16 * i);
 		};
 	};
-<<<<<<< HEAD
-	
-	gfx_BlitBuffer();
-=======
->>>>>>> 71192d1... Release version 2.0.0
 	return;	
 }

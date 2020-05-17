@@ -1,16 +1,10 @@
 #include "gfx/sprites.h"
 #include "gfx/MentalMI.h"
-<<<<<<< HEAD
-#include "exercise.h"
-#include "defines.h"
-#include "input.h"
-=======
 #include "error_handler.h"
 #include "exercise.h"
 #include "defines.h"
 #include "input.h"
 #include "settings.h"
->>>>>>> 71192d1... Release version 2.0.0
 #include "user_interface.h"
 
 #include <stdint.h>
@@ -24,17 +18,10 @@
 
 // Temporary
 #include <debug.h>
-<<<<<<< HEAD
-
-
-exercise_t exercise;
-//input_config_t input_config;
-=======
 #include "calcdbg.h"
 
 
 exercise_t exercise;
->>>>>>> 71192d1... Release version 2.0.0
 
 typedef struct {
 	uint24_t number_1;
@@ -44,8 +31,6 @@ typedef struct {
 numbers_t numbers;
 
 typedef struct {
-<<<<<<< HEAD
-=======
 	uint8_t month;
 	uint8_t day;
 	uint24_t year;
@@ -54,7 +39,6 @@ typedef struct {
 date_t date;
 
 typedef struct {
->>>>>>> 71192d1... Release version 2.0.0
 	long unsigned int solution;
 	uint24_t remainder;
 } answer_t;
@@ -129,41 +113,21 @@ static void update_counters(bool redraw) {
 
 uint24_t get_int_width(uint24_t integer) {
 	
-<<<<<<< HEAD
-	char *int_str;
-	uint24_t width;
-	int i;
-	
-	int_str = malloc(6);
-	memset(int_str, '\0', 6);
-	
-=======
 	char int_str[6] = {'\0'};
 	uint24_t width;
 	int i;
 	
->>>>>>> 71192d1... Release version 2.0.0
 	sprintf(int_str, "%d", integer);
 	
 	dbg_sprintf(dbgout, "\n");
 	
 	for (i = 0; i < 11; i++)
-<<<<<<< HEAD
-		dbg_sprintf(dbgout, "%c", *(int_str + i));
-	width = gfx_GetStringWidth(int_str);
-	free(int_str);
-=======
 		dbg_sprintf(dbgout, "%c", int_str[i]);
 	width = gfx_GetStringWidth(int_str);
->>>>>>> 71192d1... Release version 2.0.0
 	dbg_sprintf(dbgout, "\nwidth = %d\n", width);
 	return width;
 }
 
-<<<<<<< HEAD
-static void generate_random_numbers(void) {
-	
-=======
 
 static bool isleapyear(uint24_t year) {
 	if ((year % 4) == 0 && (year % 100) != 0)
@@ -208,7 +172,6 @@ static void generate_random_numbers(void) {
 	
 	uint8_t num_days;
 	
->>>>>>> 71192d1... Release version 2.0.0
 	srand(rtc_Time());
 	
 	if (exercise.type < 4) {
@@ -227,12 +190,6 @@ static void generate_random_numbers(void) {
 		
 	
 	dbg_sprintf(dbgout, "number_1 = %d\n", numbers.number_1);
-<<<<<<< HEAD
-	// if (exercise.type == DATES)
-	return;
-}
-
-=======
 	
 	if (exercise.type == DATES) {
 		date.month = randInt(0, 11);
@@ -253,7 +210,6 @@ static void generate_random_numbers(void) {
 }
 
 
->>>>>>> 71192d1... Release version 2.0.0
 static void get_solution(void) {
 	
 	uint24_t temp_num;
@@ -293,8 +249,6 @@ static void get_solution(void) {
 		
 		case COMPLEMENTS:	// The solution is the difference between the number the user entered and the generated number
 		answer.solution = exercise.upper_bound_1 - numbers.number_1;
-<<<<<<< HEAD
-=======
 		break;
 		
 		case DATES:
@@ -310,7 +264,6 @@ static void get_solution(void) {
 		print_centered("Press [Graph] or [Clear]",150);
 		print_centered("to exit",160);
 		close_program();
->>>>>>> 71192d1... Release version 2.0.0
 	}
 	
 	return;
@@ -391,13 +344,6 @@ static void draw_problem(void) {
 		print_int(exercise.upper_bound_1, 153, 10);		// Print the sum of the complements for reference
 	};
 	
-<<<<<<< HEAD
-	return;
-}
-
-static void check_user_solution(char *user_solution) {
-	
-=======
 	if (exercise.type == DATES) {
 		
 		char date_str[19] = {'\0'};
@@ -434,39 +380,10 @@ static bool check_user_solution(char *user_solution) {
 static void draw_user_solution_result(bool correct) {
 	
 	uint24_t xPos;
->>>>>>> 71192d1... Release version 2.0.0
 	uint8_t solution_magnitude;
 	
 	solution_magnitude = log10((double)(answer.solution + 1)) + 1;
 	
-<<<<<<< HEAD
-	
-	if (atoi((const char*)user_solution) == answer.solution) {
-		if (exercise.type != DIVISION) {
-			gfx_TransparentSprite_NoClip(problems_correct_icon, 299, 202);
-			exercise.problems_correct++;
-		} else {
-			gfx_TransparentSprite_NoClip(problems_correct_icon, 176, 202);
-		};
-	} else {
-			gfx_SetTextBGColor(BG_COLOR);
-			gfx_SetTextFGColor(BLACK);
-			gfx_SetTextTransparentColor(BG_COLOR);
-			gfx_SetTextScale(1, 1);
-			if (exercise.type != DIVISION) {
-				gfx_SetTextXY(315 - 8 * solution_magnitude, 211);
-				gfx_PrintUInt(answer.solution, solution_magnitude);
-			} else {
-				gfx_SetTextXY(191 - 8 * solution_magnitude, 211);
-				gfx_PrintUInt(answer.solution, solution_magnitude);
-			};
-	};
-	
-	return;
-}
-
-static void check_user_remainder(char *user_remainder) {
-=======
 	/*  Variable for horizontal solution/icon placement */
 	xPos = 315;
 	if (exercise.type == DIVISION)
@@ -508,20 +425,13 @@ static bool check_user_remainder(char *user_remainder) {
 }
 
 static void draw_user_remainder_result(bool correct) {
->>>>>>> 71192d1... Release version 2.0.0
 	
 	uint8_t remainder_magnitude;
 	
 	remainder_magnitude = log10((double)(answer.remainder + 1)) + 1;
 	
-<<<<<<< HEAD
-	if (atoi((const char*)user_remainder) == answer.remainder) {
-		gfx_TransparentSprite_NoClip(problems_correct_icon, 299, 202);
-		exercise.problems_correct++;
-=======
 	if (correct) {
 		gfx_TransparentSprite_NoClip(problems_correct_icon, 299, 202);
->>>>>>> 71192d1... Release version 2.0.0
 	} else {
 		gfx_SetTextBGColor(BG_COLOR);
 		gfx_SetTextFGColor(BLACK);
@@ -530,12 +440,6 @@ static void draw_user_remainder_result(bool correct) {
 		gfx_SetTextXY(315 - 8 * remainder_magnitude, 211);
 		gfx_PrintUInt(answer.remainder, remainder_magnitude);
 	};
-<<<<<<< HEAD
-	
-	return;
-}
-
-=======
 	return;
 }
 
@@ -558,7 +462,7 @@ static bool pause_exercise(void) {
 	return false;
 }
 
->>>>>>> 71192d1... Release version 2.0.0
+
 static void show_stats(void) {
 	
 	gfx_FillScreen(BG_COLOR);
@@ -567,13 +471,10 @@ static void show_stats(void) {
 	print_int(exercise.problems_worked, 280 - get_int_width(exercise.problems_worked), 50);
 	gfx_PrintStringXY("Problems correct:", 40, 60);
 	print_int(exercise.problems_correct, 280 - get_int_width(exercise.problems_correct), 60);
-<<<<<<< HEAD
-=======
 	gfx_PrintStringXY("Total Time (seconds):", 40, 70);
 	print_int(exercise.chronometer, 280 - get_int_width(exercise.chronometer), 70);
 	gfx_PrintStringXY("Time/Problem (seconds):", 40, 80);
 	print_int(exercise.chronometer / exercise.problems_worked, 280 - get_int_width(exercise.chronometer / exercise.problems_worked), 80);
->>>>>>> 71192d1... Release version 2.0.0
 	
 	
 	icon_button(exit_icon, 283, 203);
@@ -591,24 +492,12 @@ void do_exercise(void) {
 	
 	uint8_t key;
 	
-<<<<<<< HEAD
-	char *user_solution, *user_remainder;
-	uint8_t user_solution_buffer_size, user_remainder_buffer_size;
-	
-	user_solution_buffer_size = 11;
-	user_remainder_buffer_size = 5;
-	
-	gfx_FillScreen(BG_COLOR);
-	
-	if (exercise.timer > 0)
-=======
 	char user_solution[11];		/* Cannot exceed 10 digits (99,999 * 99,999). The type for the integer value must be uint24_t */
 	char user_remainder[5];		/* Cannot exceed 4 digits. The check function does not have a declared type for this value */
 	
 	gfx_FillScreen(BG_COLOR);
 	
 	if (SETTINGS_TIMER)
->>>>>>> 71192d1... Release version 2.0.0
 		draw_counter_dialog(timer_icon, 259, 5, 56);
 	
 	draw_input_bar();
@@ -617,25 +506,12 @@ void do_exercise(void) {
 	exercise.problems_correct = 0;
 	update_counters(false);
 	
-<<<<<<< HEAD
-	user_solution = malloc(user_solution_buffer_size);									//	The greatest magnitude of the user_solution
-	user_remainder = malloc(user_remainder_buffer_size);								//	expected will occur in the 5 x 5 multiplication and
-	set_cursor_dimensions(2, 16);														//	in the squares exercise. 99,999 x 99,999 and 9999 ^ 2
-	textio_SetInputColorConfig(BLACK, BLACK);											//	which will require a four byte variable. The remainder
-	textio_SetInitialKeymap(1);															//	should never exceed 2^24.
-																						//	Ideally, the user_remainder should not allocated unless
-																						//	the selected exercise is division, but it is always allocated
-																						//	to avoid compiler warnings
-	
-	for (;;){
-=======
 	/* Setup the chronometer */
 	timer_Control = TIMER1_DISABLE;
 	timer_1_ReloadValue = timer_1_Counter = 32768;
 	exercise.chronometer = 0;
 	
 	for (;;) {
->>>>>>> 71192d1... Release version 2.0.0
 		
 		generate_random_numbers();
 		get_solution();
@@ -643,43 +519,6 @@ void do_exercise(void) {
 		
 		gfx_BlitBuffer();
 		
-<<<<<<< HEAD
-		memset(user_solution, '\0', user_solution_buffer_size);												// Setup input buffer
-		input_config.curr_char = user_solution;
-		input_config.visible_buffer = user_solution;
-		
-		gfx_SetTextScale(2, 2);
-		
-		delay(200);			// Prevent a slow key release from triggering input escape
-		
-		do {
-			key = textio_NumericalInput(user_solution, user_solution_buffer_size - 1, 191, 5, 202);
-			gfx_BlitRectangle(1, 5, 202, 310, 16);
-		} while (key != sk_Enter && key != sk_2nd && key != sk_Mode);
-		
-		if (key == sk_Mode)
-			break;
-		
-		if (exercise.type == DIVISION && answer.remainder > 0) {
-			
-			memset(user_remainder, '\0', user_remainder_buffer_size);
-			input_config.curr_char = user_remainder;
-			input_config.visible_buffer = user_remainder;
-			
-			do {
-				key = textio_NumericalInput(user_remainder, user_remainder_buffer_size - 1, 115, 200, 202);
-				gfx_BlitRectangle(1, 200, 202, 115, 16);
-			} while (key != sk_Enter && key != sk_2nd && key != sk_Mode);
-		};
-		
-		if (key == sk_Mode)
-			break;
-		
-		check_user_solution(user_solution);
-		
-		if (exercise.type == DIVISION && answer.remainder > 0)
-			check_user_remainder(user_remainder);
-=======
 		toggle_input_timer(SETTINGS_TIMER);
 		input_config.timer_limit = exercise.chronometer + exercise.timer;
 		setup_input(true);
@@ -745,7 +584,6 @@ void do_exercise(void) {
 		} else {
 			draw_user_solution_result(false);
 		};
->>>>>>> 71192d1... Release version 2.0.0
 		
 		gfx_BlitRectangle(1, 5, 202, 310, 16);											// Copy the results to the screen
 		
@@ -756,84 +594,16 @@ void do_exercise(void) {
 			key = os_GetCSC();
 		} while (!key);
 		
-<<<<<<< HEAD
-		if (key == sk_Mode)
-			break;
-=======
 		if (key == sk_Mode) {
 			if (pause_exercise() == 1)
 				break;
 			gfx_BlitBuffer();
 		};
->>>>>>> 71192d1... Release version 2.0.0
 		
 		if (exercise.problems_worked == exercise.num_problems) {		// If all problems are done, end exercise, generate stats, and
 			show_stats();												// save them
 			break;
 		};
 	}
-<<<<<<< HEAD
-	/*
-	
-	loop until (escape key || problems_worked == problems_correct)
-	
-		update counters
-		
-		if (basic math operations)
-			generate two numbers using the upper and lower bounds
-			if (addition)
-				add them -> solution
-			if (subtraction)
-				subtract them -> solution
-			if (multiplication)
-				multiply them -> solution
-			if (division)
-				divide them -> solution
-				get remainder -> solution_remainder
-			draw the problem
-	
-		if (roots, powers, or dates)
-			generate two numbers using the upper and lower bounds
-			if (roots)
-				calculate the root -> solution
-			if (power)
-				calculate power -> solution
-			if (date)
-				get date number -> solution
-			draw the problem
-		
-		if (complements)
-			generate one number using the upper bound
-			subtract it from upper bound -> solution
-			draw the problem
-		
-		get user input -> user_solution
-		
-		if (division)
-			get user input -> user_remainder
-		
-		if (user_solution == solution)
-			mark correct
-			if (!division)
-				inc problems_correct
-		else
-			mark wrong
-		
-		if (division)
-			if (user_remainder == remainder)
-				mark correct
-				inc problems_correct
-			else
-				mark wrong
-	
-		inc problems worked
-		
-		pause
-	*/
-	free(user_solution);
-	free(user_remainder);
-=======
-	
->>>>>>> 71192d1... Release version 2.0.0
 	return;
 }

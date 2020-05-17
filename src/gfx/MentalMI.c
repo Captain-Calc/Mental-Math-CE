@@ -3,11 +3,8 @@
 #include "MentalMI.h"
 
 #include <fileioc.h>
-<<<<<<< HEAD
-uint8_t *MentalMI[16] = {
-=======
+
 uint8_t *MentalMI[17] = {
->>>>>>> 71192d1... Release version 2.0.0
  (uint8_t*)0,
  (uint8_t*)258,
  (uint8_t*)516,
@@ -24,10 +21,7 @@ uint8_t *MentalMI[17] = {
  (uint8_t*)3354,
  (uint8_t*)3612,
  (uint8_t*)3870,
-<<<<<<< HEAD
-=======
  (uint8_t*)4128,
->>>>>>> 71192d1... Release version 2.0.0
 };
 
 bool MentalMI_init(void) {

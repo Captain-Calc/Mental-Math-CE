@@ -63,16 +63,11 @@ uint24_t get_int_width(uint24_t integer);
 static void generate_random_numbers(void);
 static void get_solution(void);
 static void draw_problem(void);
-<<<<<<< HEAD
-static void check_user_solution(char *user_solution);
-static void check_user_remainder(char *user_remainder);
-=======
 static bool check_user_solution(char *user_solution);
 static void draw_user_solution_result(bool correct);
 static bool check_user_remainder(char *user_remainder);
 static void draw_user_remainder_result(bool correct);
 static bool pause_exercise(void);
->>>>>>> 71192d1... Release version 2.0.0
 static void show_stats(void);
 
 void do_exercise(void);

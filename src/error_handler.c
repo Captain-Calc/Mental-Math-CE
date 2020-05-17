@@ -1,30 +1,22 @@
 #include "user_interface.h"
 #include "error_handler.h"
-<<<<<<< HEAD
-=======
 #include "settings.h"
->>>>>>> 71192d1... Release version 2.0.0
 
 #include <stdint.h>
 #include <string.h>
 
 #include <tice.h>
 #include <graphx.h>
-<<<<<<< HEAD
-
-=======
 #include <fileioc.h>
 
 settings_t settings;
->>>>>>> 71192d1... Release version 2.0.0
+
 
 void error(void) {
 	
 	dither_screen();
 	status_message("ERROR", 54, 200);
 	dialog(60, 89, 200, 100);
-<<<<<<< HEAD
-=======
 }
 
 
@@ -49,5 +41,4 @@ void close_program(void) {
 	ti_CloseAll();
 	gfx_End();
 	exit(0);
->>>>>>> 71192d1... Release version 2.0.0
 }

@@ -6,15 +6,9 @@
 
 #include <stdbool.h>
 
-<<<<<<< HEAD
-#define MentalMI_num 16
-
-extern uint8_t *MentalMI[16];
-=======
 #define MentalMI_num 17
 
 extern uint8_t *MentalMI[17];
->>>>>>> 71192d1... Release version 2.0.0
 #define home_icon_width 16
 #define home_icon_height 16
 #define home_icon ((gfx_sprite_t*)MentalMI[0])
@@ -63,12 +57,9 @@ extern uint8_t *MentalMI[17];
 #define complements_icon_width 16
 #define complements_icon_height 16
 #define complements_icon ((gfx_sprite_t*)MentalMI[15])
-<<<<<<< HEAD
-=======
 #define dates_icon_width 16
 #define dates_icon_height 16
 #define dates_icon ((gfx_sprite_t*)MentalMI[16])
->>>>>>> 71192d1... Release version 2.0.0
 bool MentalMI_init(void);
 
 #endif

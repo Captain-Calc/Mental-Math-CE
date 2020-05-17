@@ -1,12 +1,9 @@
 /* This functions in this file were taken directly from
 TEXTIOC v3.5.0 and modified to fit Mental Math CE */
 
-<<<<<<< HEAD
-=======
 #include "gfx/sprites.h"
 #include "gfx/MentalMI.h"
 #include "exercise.h"
->>>>>>> 71192d1... Release version 2.0.0
 #include "input.h"
 
 #include <stdint.h>
@@ -28,51 +25,31 @@ input_config_t input_config;
 const char *numerals = "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x33\x36\x39\0\0\0\0\0\x32\x35\x38\0\0\0\0\x30\x31\x34\x37\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
 
 
-<<<<<<< HEAD
-void textio_SetInputColorConfig(uint8_t text_FG_color, uint8_t cursor_color) {
-=======
+
 static void textio_SetInputColorConfig(uint8_t text_FG_color, uint8_t cursor_color) {
->>>>>>> 71192d1... Release version 2.0.0
 	input_config.text_FG_color = text_FG_color;
 	input_config.cursor_color = cursor_color;
 }
 
 
-<<<<<<< HEAD
-void textio_SetPrgmNameFlag(bool prgm_name_flag) {
-=======
 static void textio_SetPrgmNameFlag(bool prgm_name_flag) {
->>>>>>> 71192d1... Release version 2.0.0
 	input_config.prgm_name_flag = prgm_name_flag;
 }
 
 
-<<<<<<< HEAD
-void textio_SetInitialKeymap(uint8_t keymap_num) {
-=======
 static void textio_SetInitialKeymap(uint8_t keymap_num) {
->>>>>>> 71192d1... Release version 2.0.0
 	input_config.curr_keymap_num = keymap_num;
 	input_config.curr_char = NULL;
 	input_config.visible_buffer = NULL;
 }
 
 
-<<<<<<< HEAD
-/* This function is not part of the TEXTIOC library */
-void set_cursor_dimensions(uint8_t width, uint8_t height) {
-=======
 /* The following two functions are not part of the TEXTIOC library */
 static void set_cursor_dimensions(uint8_t width, uint8_t height) {
->>>>>>> 71192d1... Release version 2.0.0
 	input_config.cursor_width = width;
 	input_config.cursor_height = height;
 }
 
-<<<<<<< HEAD
-
-uint8_t textio_Input(char *buffer, uint8_t buffer_size, uint24_t visible_input_width, uint24_t xPos, uint8_t yPos, uint8_t total_keymap_num, ...) {
-=======
 void setup_input(bool large_font) {
 	textio_SetInputColorConfig(BLACK, BLACK);
 	textio_SetInitialKeymap(1);
@@ -94,7 +71,6 @@ void toggle_input_timer(bool state) {
 
 
 static uint8_t textio_Input(char *buffer, uint8_t buffer_size, uint24_t visible_input_width, uint24_t xPos, uint8_t yPos, uint8_t total_keymap_num, ...) {
->>>>>>> 71192d1... Release version 2.0.0
 	
 	char *visible_buffer;
 	char *last_visible_char;
@@ -149,10 +125,7 @@ static uint8_t textio_Input(char *buffer, uint8_t buffer_size, uint24_t visible_
 	text_BG_color = gfx_GetPixel(cursor_xPos, yPos);
 	gfx_SetTextBGColor(text_BG_color);
 	gfx_SetTextTransparentColor(text_BG_color);
-<<<<<<< HEAD
-=======
 	gfx_SetTextScale(input_config.text_scale, input_config.text_scale);
->>>>>>> 71192d1... Release version 2.0.0
 		
 	// Erase all visible input and redraw it
 	gfx_SetColor(text_BG_color);
@@ -205,11 +178,6 @@ static uint8_t textio_Input(char *buffer, uint8_t buffer_size, uint24_t visible_
 	dbg_sprintf(dbgout, "|\n");
 	// End of debugging code ----------------------------
 		
-<<<<<<< HEAD
-		
-	// Wait for input and display cursor
-	do {
-=======
 	/* Start the chronometer */
 	if (input_config.timed_input)
 		timer_Control = TIMER1_ENABLE | TIMER1_32K | TIMER1_0INT | TIMER1_DOWN;
@@ -233,7 +201,6 @@ static uint8_t textio_Input(char *buffer, uint8_t buffer_size, uint24_t visible_
 				return INPUT_TIMER_EXPIRED_RET_VAL;
 		};
 		
->>>>>>> 71192d1... Release version 2.0.0
 		if (cursor_active) {
 			gfx_SetColor(input_config.cursor_color);
 			gfx_Rectangle_NoClip(cursor_xPos, yPos, input_config.cursor_width, input_config.cursor_height);
@@ -384,15 +351,6 @@ static uint8_t textio_Input(char *buffer, uint8_t buffer_size, uint24_t visible_
 	input_config.curr_char = curr_char;
 	input_config.visible_buffer = visible_buffer;
 	va_end(keymap_list);
-<<<<<<< HEAD
-	return key;
-}
-
-
-uint8_t textio_NumericalInput(char *buffer, uint8_t buffer_size, uint24_t visible_input_width, uint24_t xPos, uint8_t yPos) {
-	textio_SetPrgmNameFlag(false);
-	return textio_Input(buffer, buffer_size, visible_input_width, xPos, yPos, 2, numerals, "1");
-=======
 	
 	// Erase all visible input and redraw it
 	gfx_SetTextScale(input_config.text_scale, input_config.text_scale);
@@ -421,17 +379,4 @@ uint8_t textio_NumericalInput(char *buffer, uint8_t buffer_size, uint24_t visibl
 uint8_t textio_NumericalInput(char *buffer, uint8_t buffer_size, uint24_t visible_input_width, uint24_t xPos, uint8_t yPos) {
 	textio_SetPrgmNameFlag(false);
 	return textio_Input(buffer, buffer_size, visible_input_width, xPos, yPos, 2, numerals, "1");
-}
-
-
-uint8_t numerical_input(char *buffer, uint8_t magnitude, uint8_t input_height, uint24_t input_width, uint24_t xPos, uint8_t yPos) {
-	
-	uint8_t key;
-	
-	textio_SetPrgmNameFlag(false);
-	key = textio_NumericalInput(buffer, magnitude, input_width, xPos, yPos);
-	gfx_BlitRectangle(1, xPos, yPos, input_width, input_height);
-
-	return key;
->>>>>>> 71192d1... Release version 2.0.0
 }
