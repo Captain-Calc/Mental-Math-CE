@@ -1,0 +1,59 @@
+opened convpng.ini
+
+--- sprites (C) ---
+building palette with [256] available indices ...
+built palette with [11] indices.
+palette quality : 100.00%
+transparent color index : 0
+transparent color : 0x7C1F
+<<<<<<< HEAD
+16:
+=======
+17:
+>>>>>>> 71192d1... Release version 2.0.0
+ home_icon : 100.00%
+ exit_icon : 100.00%
+ settings_icon : 100.00%
+ back_icon : 100.00%
+ start_icon : 100.00%
+ dithering : 100.00%
+ problems_worked_icon : 100.00%
+ problems_correct_icon : 100.00%
+ timer_icon : 100.00%
+ addition_symbol : 100.00%
+ subtraction_symbol : 100.00%
+ multiplication_symbol : 100.00%
+ division_symbol : 100.00%
+ roots_icon : 100.00%
+ squares_icon : 100.00%
+ complements_icon : 100.00%
+<<<<<<< HEAD
+=======
+ dates_icon : 100.00%
+>>>>>>> 71192d1... Release version 2.0.0
+
+exporting appvar: MentalMI.8xv
+ home_icon
+ exit_icon
+ settings_icon
+ back_icon
+ start_icon
+ dithering
+ problems_worked_icon
+ problems_correct_icon
+ timer_icon
+ addition_symbol
+ subtraction_symbol
+ multiplication_symbol
+ division_symbol
+ roots_icon
+ squares_icon
+ complements_icon
+<<<<<<< HEAD
+=======
+ dates_icon
+>>>>>>> 71192d1... Release version 2.0.0
+
+converted in 0 s
+
+finished!

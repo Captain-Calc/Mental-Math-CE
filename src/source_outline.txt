@@ -1,0 +1,19 @@
+File*			Purpose
+----------------	----------------
+defines			Defines necessary global variables
+error_handler		Handles errors
+exercise		Handles exercise, exercise statistics,
+			and saving record times to appvar
+input			Handles getting numerical input from the
+			user
+main			Checks for appvars; handles main menu;
+			closes program
+problem_sets		Handles the problem set menus for both
+			the basic operations and the special
+			exercises
+settings		Handles the settings menu; modifies the
+			settings appvar and the input function
+user_interface		Contains the functions for all of the UI
+			elements
+
+* Each file consists of the *.c and *.h pair.

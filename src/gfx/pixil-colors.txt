@@ -1,0 +1,7 @@
+Base Brown		:	R: 199	G: 107	B: 26	#: C76B1A
+Hightlight Yellow	:	R: 255	G: 170	B: 0	#: FFAA00
+Transparent Color	:	R: 255	G: 0	B: 255	#: FF00FF
+Background Color	:	R: 104 	G: 159	B: 56	#: 689F38
+Background Shadow Color	:	R: 85 	G: 139	B: 47	#: 558B2F
+Green			:	R: 116	G: 255	B: 3	#: 74FF03
+Light Grey		:	R: 220	G: 237	B: 200	#: DCEDC8
