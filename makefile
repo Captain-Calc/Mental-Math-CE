@@ -7,11 +7,7 @@
 
 NAME        ?= MENTMATH
 COMPRESSED  ?= NO
-<<<<<<< HEAD
-#ICON        ?= iconc.png
-=======
 ICON        ?= icon.png
->>>>>>> 71192d1... Release version 2.0.0
 DESCRIPTION ?= "Mental Math CE"
 
 # ----------------------------
