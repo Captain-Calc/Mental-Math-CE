@@ -14,6 +14,6 @@ After extracting the Mental_Math_CE.zip file, send the following file to your ca
 
 * Platform: TI-84 Plus CE
 * Language: C
-* Latest Version: 2.0.0
+* Latest Version: 2.0.1
 * Author: Captain-Calc
-* Approximate Size (main program): 21,685 bytes
+* Approximate Size (main program): 21,649 bytes
