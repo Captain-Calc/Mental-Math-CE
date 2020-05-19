@@ -237,7 +237,7 @@ static int get_num_problems(void) {
 			if (key == sk_Yequ)
 				return -1;
 			exercise.num_problems = atoi((const char*)buffer);
-			if (key == sk_Enter || key == sk_2nd || ((key == sk_Graph || key == sk_Down) && SETTINGS_TIMER))
+			if (key == sk_Enter || key == sk_2nd || (key == sk_Graph && !SETTINGS_TIMER) || (key == sk_Down && SETTINGS_TIMER))
 				break;
 		};
 	} while (exercise.num_problems == 0);

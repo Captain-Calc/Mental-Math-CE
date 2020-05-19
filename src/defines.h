@@ -2,7 +2,7 @@
 #define DEFINES_H
 
 #define PROGRAM_AUTHOR	"Captain Calc"
-#define PROGRAM_VERSION	"2.0.0"
+#define PROGRAM_VERSION	"2.0.1"
 
 #define ADDITION		0
 #define SUBTRACTION		1

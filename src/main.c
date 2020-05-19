@@ -1,6 +1,6 @@
 /*======================================
  * Program Name: Mental Math CE
- * Version: 2.0.0
+ * Version: 2.0.1
  * Author: Captain Calc
  * Last edited: 5/16/2020
  *======================================

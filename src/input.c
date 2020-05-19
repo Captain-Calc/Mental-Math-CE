@@ -186,10 +186,11 @@ static uint8_t textio_Input(char *buffer, uint8_t buffer_size, uint24_t visible_
 	// Wait for input and display cursor
 	do {
 		
+		if (exercise.chronometer < CHRONOMETER_MAX_VAL)
+				exercise.chronometer++;
+		
 		if (input_config.timed_input) {
 			if (timer_IntStatus & TIMER1_RELOADED) {
-				if (exercise.chronometer < CHRONOMETER_MAX_VAL)
-					exercise.chronometer++;
 				gfx_SetColor(gfx_GetPixel(283, 10));
 				gfx_FillRectangle_NoClip(283, 10, 30, 7);
 				gfx_SetTextXY(283, 10);

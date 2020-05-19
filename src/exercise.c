@@ -474,7 +474,8 @@ static void show_stats(void) {
 	gfx_PrintStringXY("Total Time (seconds):", 40, 70);
 	print_int(exercise.chronometer, 280 - get_int_width(exercise.chronometer), 70);
 	gfx_PrintStringXY("Time/Problem (seconds):", 40, 80);
-	print_int(exercise.chronometer / exercise.problems_worked, 280 - get_int_width(exercise.chronometer / exercise.problems_worked), 80);
+	exercise.time_per_problem = exercise.chronometer / exercise.problems_worked;
+	print_int(exercise.time_per_problem, 280 - get_int_width(exercise.time_per_problem), 80);
 	
 	
 	icon_button(exit_icon, 283, 203);
